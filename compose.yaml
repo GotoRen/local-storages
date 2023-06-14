@@ -1,0 +1,52 @@
+name: local-storages
+
+services:
+  minio:
+    build:
+      context: .docker/minio
+      dockerfile: Dockerfile
+    container_name: minio-local
+    environment:
+      MINIO_ROOT_USER: "admin"
+      MINIO_ROOT_PASSWORD: "password"
+    ports:
+      - mode: ingress
+        target: 9000
+        published: 9000
+        protocol: tcp
+      - mode: ingress
+        target: 9001
+        published: 9001
+        protocol: tcp
+    privileged: true
+    restart: always
+    tty: true
+    volumes:
+      - type: bind
+        source: .minio/data
+        target: /export
+        bind:
+          create_host_path: true
+      - type: bind
+        source: .minio/config
+        target: /root/.minio
+        bind:
+          create_host_path: true
+    command: server --console-address ":9001" /export
+
+  createbuckets:
+    build:
+      context: .docker/createbuckets
+      dockerfile: Dockerfile
+    depends_on:
+      minio:
+        condition: service_started
+    container_name: minio-mc-local
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add test http://minio:9000 admin password;
+      /usr/bin/mc rm -r --force test/local-appdata;
+      /usr/bin/mc mb test/local-appdata;
+      /usr/bin/mc policy set public test/local-appdata;
+      exit 0;
+      "
