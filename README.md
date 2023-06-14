@@ -19,7 +19,7 @@ $ docker compose up -d
 
 - バケット名：`test`
 
-![スクリーンショット 2023-06-14 22 18 45](https://github.com/GotoRen/local-storages/assets/63791288/649d4852-37cf-4fc3-88ea-d577683d961c)
+![picture](https://github.com/GotoRen/local-storages/assets/63791288/50ac2cd1-ec98-40f4-8d08-b7cf74b71772)
 
 ### 4. `api/main.go`の 1~4 のコメントアウトを必要に応じてチェックアウトしながら実行
 
