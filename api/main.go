@@ -1,8 +1,6 @@
 package main
 
-import (
-	infrastucture "github.com/GotoRen/local-storages/api/infrastructure"
-)
+import "github.com/GotoRen/local-storages/api/infrastructure"
 
 func main() {
 	bucketName := "test"
@@ -10,7 +8,7 @@ func main() {
 	uploadFilePath := "./sample.txt"
 
 	// s3クライアントを作成
-	client, err := infrastucture.NewS3Repository()
+	client, err := infrastructure.NewS3Repository()
 	if err != nil {
 		panic(err)
 	}
