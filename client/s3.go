@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/GotoRen/storage-controller/api"
-	"github.com/GotoRen/storage-controller/config"
+	"github.com/GotoRen/storage-api-sample/api"
+	"github.com/GotoRen/storage-api-sample/config"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"

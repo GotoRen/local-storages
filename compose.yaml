@@ -1,4 +1,4 @@
-name: local-storages
+name: storage-api-sample
 
 services:
   minio:

@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/GotoRen/storage-controller/config"
+	"github.com/GotoRen/storage-api-sample/config"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/s3"
