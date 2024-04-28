@@ -17,10 +17,13 @@ func NewS3Client(cfg *config.Config) (*api.Client, error) {
 	}
 
 	s3Cfg := aws.Config{
-		Credentials:      credentials.NewStaticCredentials(cfg.AccessKey, cfg.SecretKey, ""),
-		Region:           aws.String(cfg.Region),
-		Endpoint:         aws.String(cfg.EndPoint),
-		S3ForcePathStyle: aws.Bool(true),
+		Credentials: credentials.NewStaticCredentials(cfg.AccessKey, cfg.SecretKey, ""),
+		Region:      aws.String(cfg.Region),
+	}
+
+	if cfg.UseMinIO {
+		s3Cfg.S3ForcePathStyle = aws.Bool(true)
+		s3Cfg.Endpoint = aws.String("http://localhost:9000")
 	}
 
 	return &api.Client{
