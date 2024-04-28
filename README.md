@@ -1,6 +1,12 @@
 # storage-api-sample
 
-## 使い方
+## Supported platform
+
+- MinIO（Supported）
+- Amazon S3（Supported）
+- Google Cloud Storage（Coming soon）
+
+## Usage
 
 ### 1. ローカル環境構築
 
