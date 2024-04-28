@@ -12,16 +12,17 @@ $ docker compose up -d
 ### 2. MinIO アクセス
 
 - http://localhost:9001/login
-- ユーザ：admin
-- パスワード：password
+- `AWS_ACCESS_KEY_ID`：admin
+- `AWS_SECRET_ACESS_key`：password
+- `REGION_NAME`：ap-northeast-1
 
-### 3. バケットを作成
+### 3. バケットを確認
 
-- バケット名：`test`
+- バケット名：`sample-storage`
 
-![picture](https://github.com/GotoRen/storage-api-sample/assets/63791288/7b560292-ff5a-453f-a5e1-82edfddddfa8)
+![image](https://github.com/GotoRen/storage-api-sample/assets/63791288/d576122e-fa29-4386-81fb-e3788e47832c)
 
-### 4. コメントアウトを必要に応じてチェックアウト
+### 4. 必要に応じてコメントインして実行
 
 ```go
 // 1. ローカルファイルをアップロード
@@ -41,6 +42,11 @@ if err := client.Download(cfg); err != nil {
 
 // 4. オブジェクトファイルを削除
 if err := client.Delete(cfg); err != nil {
+	log.Fatal(err)
+}
+
+// 5. Presigned URL を使用してファイルをアップロード
+if err := client.UploadWithPreSignedRequest(cfg); err != nil {
 	log.Fatal(err)
 }
 ```

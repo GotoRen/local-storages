@@ -134,6 +134,30 @@ func (client *Client) Delete(cfg *config.Config) error {
 	return nil
 }
 
+// UploadWithPreSignedRequest requests a Presigned URL and uploads an object to a remote bucket.
+func (client *Client) UploadWithPreSignedRequest(cfg *config.Config) error {
+	req, _ := client.S3.PutObjectRequest(&s3.PutObjectInput{
+		Bucket: aws.String(cfg.BucketName),
+		Key:    aws.String(cfg.ObjectKey),
+	})
+
+	url, err := req.Presign(cfg.PreSignedUrlExpireLimit)
+	if err != nil {
+		return fmt.Errorf("failed to get presigning URL: %w", err)
+	}
+
+	log.Println("[DEBUG] Upload Presigned URL:", url)
+
+	status, err := uploadWithPresignedUrl(url, cfg.UploadImagePath)
+	if err != nil {
+		return fmt.Errorf("failed to upload file: %w", err)
+	}
+
+	log.Println("[DEBUG] Upload Presigned URL status:", status)
+
+	return nil
+}
+
 // objectHealthCheck verifies the health check of an object file.
 func objectHealthCheck(bucketName, objectKey string, client *Client) (bool, error) {
 	input := &s3.HeadObjectInput{

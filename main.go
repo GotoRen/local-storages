@@ -16,15 +16,15 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// 1. ローカルファイルをアップロード
-	if err := client.Upload(cfg); err != nil {
-		log.Fatal(err)
-	}
+	// // 1. ローカルファイルをアップロード
+	// if err := client.Upload(cfg); err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	// 2. オブジェクトファイルを読込
-	if err := client.Read(cfg); err != nil {
-		log.Fatal(err)
-	}
+	// // 2. オブジェクトファイルを読込
+	// if err := client.Read(cfg); err != nil {
+	// 	log.Fatal(err)
+	// }
 
 	// // 3. オブジェクトファイルをダウンロード
 	// if err := client.Download(cfg); err != nil {
@@ -35,4 +35,9 @@ func main() {
 	// if err := client.Delete(cfg); err != nil {
 	// 	log.Fatal(err)
 	// }
+
+	// 5. Presigned URL を使用してファイルをアップロード
+	if err := client.UploadWithPreSignedRequest(cfg); err != nil {
+		log.Fatal(err)
+	}
 }
