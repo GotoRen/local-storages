@@ -10,7 +10,7 @@ import (
 func main() {
 	cfg := config.Get()
 
-	// s3クライアントを作成
+	// s3 クライアントを作成
 	client, err := client.NewS3Client(cfg)
 	if err != nil {
 		log.Fatal(err)
