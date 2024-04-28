@@ -22,7 +22,7 @@ $ docker compose up -d
 
 ![image](https://github.com/GotoRen/storage-api-sample/assets/63791288/d576122e-fa29-4386-81fb-e3788e47832c)
 
-### 3. 必要に応じてコメントインして実行
+### 4. 必要に応じてコメントインして実行
 
 ```go
 // 1. ローカルファイルをアップロード
